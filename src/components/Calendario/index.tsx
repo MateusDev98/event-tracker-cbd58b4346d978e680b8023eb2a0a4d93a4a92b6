@@ -1,10 +1,9 @@
 import React from "react";
-import { IEvento } from "../../interfaces/IEvento";
 import style from "./Calendario.module.scss";
 import ptBR from "./localizacao/ptBR.json";
 import Kalend, { CalendarEvent, CalendarView } from "kalend";
 import "kalend/dist/styles/index.css";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { listaDeEventosState } from "../state/atom";
 
 interface IKalendEvento {
@@ -17,10 +16,10 @@ interface IKalendEvento {
 
 const Calendario: React.FC = () => {
   const eventosKalend = new Map<string, IKalendEvento[]>();
-  const eventos = useRecoilValue(listaDeEventosState);
-  const setListaDeEventos = useSetRecoilState(listaDeEventosState);
+  const [listaDeEventos, setListaDeEventos] =
+    useRecoilState(listaDeEventosState);
 
-  eventos.forEach((evento) => {
+  listaDeEventos.forEach((evento) => {
     const chave = evento.inicio.toISOString().slice(0, 10);
     if (!eventosKalend.has(chave)) {
       eventosKalend.set(chave, []);
