@@ -1,11 +1,11 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { IEvento } from "../../../interfaces/IEvento";
 import { listaDeEventosState } from "../../state/atom";
 
 const EventoCheckbox: React.FC<{ evento: IEvento }> = ({ evento }) => {
   const [listaDeEventos, setListaDeEventos] =
     useRecoilState(listaDeEventosState);
+    
   const estilos = [
     "far",
     "fa-2x",
